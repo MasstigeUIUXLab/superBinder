@@ -3,12 +3,16 @@
     <div class="model">
       <div class="header">
         <span>전체 목록 보기</span>
-        <img src="/src/assets/img/icon/cross.svg" alt="뒤로가기" />
+        <img
+          src="/src/assets/img/icon/cross.svg"
+          alt="뒤로가기"
+          @click.self="$emit('close')"
+        />
       </div>
 
       <div class="con con02">
         <ul>
-          <li>
+          <li @click="goMy">
             <div class="card">
               <div class="card-title">
                 <img src="/src/assets/img/myPage/mainAcount.svg" alt="" />
@@ -17,7 +21,7 @@
             </div>
           </li>
 
-          <li>
+          <li @click="goSub">
             <div class="card">
               <div class="card-title">
                 <img src="/src/assets/img/myPage/serveAcount.svg" alt="" />
@@ -26,7 +30,7 @@
             </div>
           </li>
 
-          <li>
+          <li @click="goSub">
             <div class="card">
               <div class="card-title">
                 <img src="/src/assets/img/myPage/serveAcount2.svg" alt="" />
@@ -34,7 +38,7 @@
               </div>
             </div>
           </li>
-          <li>
+          <li @click="goSub">
             <div class="card">
               <div class="card-title">
                 <img src="/src/assets/img/icon/flus.svg" alt="" />
@@ -53,19 +57,25 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
-function goBack() {
-  router.push('');
+function goMy() {
+  router.push('/my');
+}
+function goSub() {
+  router.push('/mysub');
 }
 </script>
 
 <style scoped>
 .wrap {
+  position: fixed;
+  top: 0px;
+  left: 0px;
   width: 100%;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: end;
+  z-index: 99999;
 }
 .wrap .model {
   width: 100%;

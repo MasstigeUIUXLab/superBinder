@@ -1,6 +1,10 @@
 <template>
   <div class="header">
-    <img src="/src/assets/img/Authentication/leftAllow.png" alt="뒤로가기" />
+    <img
+      src="/src/assets/img/Authentication/leftAllow.png"
+      alt="뒤로가기"
+      @click="goBack"
+    />
     <span>약관정보</span>
   </div>
   <div class="con">
@@ -15,7 +19,14 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useRouter } from 'vue-router';
+const router = useRouter();
+
+function goBack() {
+  router.go('-1');
+}
+</script>
 
 <style scoped>
 .header {

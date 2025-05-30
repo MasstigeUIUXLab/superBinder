@@ -12,7 +12,7 @@
       <img src="/src/assets/img/myPage/myProfile.png" alt="" />
       <p>메인 홍길동001</p>
     </div>
-    <button>배송지 추가</button>
+    <button @click="goAdd">배송지 추가</button>
   </div>
   <div class="con02">
     <div class="title">
@@ -50,6 +50,9 @@ const showAlert = ref(false);
 
 function goBackPage() {
   router.go('-1');
+}
+function goAdd() {
+  router.push('/setting/delivery/address');
 }
 
 onMounted(() => {

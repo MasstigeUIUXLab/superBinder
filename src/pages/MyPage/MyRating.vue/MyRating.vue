@@ -1,5 +1,5 @@
 <template>
-  <div class="rating-card">
+  <div class="rating-card" @click="rating">
     <div class="card-con01">
       <div class="bg">
         <img src="/src/assets/img/icon/rating.png" alt="" />
@@ -25,6 +25,14 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+function rating() {
+  router.push('/my/myratingguide');
+}
+
 const progress = ref(30);
 </script>
 

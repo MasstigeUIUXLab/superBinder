@@ -1,10 +1,14 @@
 <template>
   <div class="header">
-    <img src="/src/assets/img/Authentication/leftAllow.png" alt="뒤로가기" />
+    <img
+      src="/src/assets/img/Authentication/leftAllow.png"
+      alt="뒤로가기"
+      @click="goBack"
+    />
     <span>카테고리</span>
   </div>
   <ul class="category">
-    <li>카테고리</li>
+    <li class="active">카테고리</li>
     <li>브랜드</li>
     <li>카테고리</li>
   </ul>
@@ -35,7 +39,7 @@
           </div>
           <span>전체</span>
         </div>
-        <div class="category-icon">
+        <div class="category-icon" @click="ProductList01">
           <div class="icon">
             <img src="/src/assets/img/category/categoryIcon02.svg" alt="" />
           </div>
@@ -94,7 +98,17 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useRouter } from 'vue-router';
+const router = useRouter();
+
+function ProductList01() {
+  router.push('/productlist01');
+}
+function goBack() {
+  router.push('/');
+}
+</script>
 
 <style scoped>
 .header {
@@ -175,6 +189,12 @@
   background: #fff;
   color: #1e90ff;
   font-weight: bold;
+}
+.category li.active {
+  background: #fff;
+  color: #1e90ff;
+  font-weight: bold;
+  border-bottom: 2px solid #2866ec;
 }
 .content {
   flex: 1;

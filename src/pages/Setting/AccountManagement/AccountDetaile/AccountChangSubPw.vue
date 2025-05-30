@@ -2,7 +2,11 @@
   <div class="wrap">
     <div class="title">
       <span>비밀번호 변경</span>
-      <img src="/src/assets/img/icon/cross.svg" alt="뒤로가기" />
+      <img
+        src="/src/assets/img/icon/cross.svg"
+        alt="뒤로가기"
+        @click="goBack"
+      />
     </div>
     <div class="con">
       <ul>
@@ -40,7 +44,7 @@
             id="con01-2"
             v-model="password2"
             inputmode="numeric"
-            placeholder="새로운 비밀번호 재입력력"
+            placeholder="새로운 비밀번호 재입력"
             @input="password2 = password2.replace(/\D/g, '')"
           />
           <img
@@ -91,12 +95,15 @@
         입력하신 비밀번호와 재입력한 비밀번호가 일지하지 않습니다.
       </p>
     </div>
-    <button class="bottom-btn">정보 수정</button>
+    <button class="bottom-btn" @click="goComplete">정보 수정</button>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const showNumbers = ref(false);
 const showNumbers2 = ref(false);
@@ -104,6 +111,13 @@ const showNumbers3 = ref(false);
 const password1 = ref('');
 const password2 = ref('');
 const password3 = ref('');
+
+function goBack() {
+  router.push('/setting/account/subdetaile');
+}
+function goComplete() {
+  router.push('/setting/account/subdetaile');
+}
 </script>
 
 <style scoped>

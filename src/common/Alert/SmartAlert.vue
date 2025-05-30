@@ -1,7 +1,7 @@
 <template>
   <div class="modal-overlay">
-    <div class="modal-content">
-      <button class="close-btn" @click="closeModal">
+    <div class="modal-content" @click="goSmartOrdering">
+      <button class="close-btn" @click.stop="closeModal">
         <img src="/src/assets/img/icon/cross.svg" alt="" />
       </button>
       <h1 class="title">
@@ -24,6 +24,14 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+function goSmartOrdering() {
+  router.push('/smartordering');
+}
+
 const emit = defineEmits(['close']);
 function closeModal() {
   emit('close');

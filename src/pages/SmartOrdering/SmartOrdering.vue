@@ -1,12 +1,15 @@
 <template>
   <div class="header">
-    <div class="header-left">
+    <div class="header-left" @click="goBackPage">
       <img src="/src/assets/img/icon/leftAllow.svg" alt="뒤로가기" />
-
       <p>스마트 발주</p>
     </div>
     <div class="header-right">
-      <img src="/src/assets/img/smartOrdering/homeBtn.svg" alt="홈" />
+      <img
+        src="/src/assets/img/smartOrdering/homeBtn.svg"
+        alt="홈"
+        @click="goHome"
+      />
     </div>
   </div>
   <div class="wrap">
@@ -21,57 +24,89 @@
         <span>상품을 구매해볼까요?</span>
       </div>
       <div class="main-button">
-        <button>
+        <button
+          :class="{ active: selectedType === 'beginner' }"
+          @click="selectType('beginner')"
+        >
           <p>비기너</p>
           <span>슈퍼바인더를 처음 이용하시나요?</span>
         </button>
-        <button>
+        <button
+          :class="{ active: selectedType === 'stainer' }"
+          @click="selectType('stainer')"
+        >
           <p>스테이너</p>
           <span>슈퍼바인더를 꾸준히 이용하고 계신가요?</span>
         </button>
       </div>
     </div>
     <div class="bottom">
-      <button>시작하기</button>
+      <button @click="start">시작하기</button>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const selectedType = ref(null);
+
+function goBackPage() {
+  router.go(-1);
+}
+
+function goHome() {
+  router.push('/homepage');
+}
+
+function selectType(type) {
+  selectedType.value = type;
+}
+
+function start() {
+  if (selectedType.value === 'beginner') {
+    router.push('/smartorderingbeginner01');
+  } else if (selectedType.value === 'stainer') {
+    router.push('/smartorderingexpert01');
+  }
+  // else {
+  //   alert('유형을 선택해주세요.');
+  // }
+}
+</script>
 
 <style scoped>
 .header {
   width: 100%;
   height: 62px;
-  padding: 16px 24px 10px 24px;
+  padding: 16px 24px 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.header .header-left {
+.header-left {
   display: flex;
   gap: 4px;
 }
-.header .header-left img {
+.header-left img {
   width: 24px;
   height: 24px;
 }
-.header .header-left p {
+.header-left p {
   color: #212121;
-  font-feature-settings: 'liga' off, 'clig' off;
   font-family: Pretendard;
   font-size: 18px;
-  font-style: normal;
   font-weight: 600;
-  line-height: normal;
 }
-.header .header-right img {
+.header-right img {
   width: 36px;
   height: 36px;
 }
 .wrap {
-  margin: 24px 0px 36px 0px;
-  padding: 0px 24px;
+  margin: 24px 0 36px;
+  padding: 0 24px;
 }
 .con01 {
   display: flex;
@@ -82,50 +117,41 @@
   width: 206px;
   height: 206px;
 }
-.con01 .main-txt {
+.main-txt {
   margin-top: 30px;
   text-align: center;
 }
-.con01 .main-txt h1 {
+.main-txt h1 {
   color: #222;
-  text-align: center;
-  font-feature-settings: 'liga' off, 'clig' off;
   font-family: Pretendard;
   font-size: 24px;
-  font-style: normal;
   font-weight: 700;
-  line-height: 33px; /* 137.5% */
+  line-height: 33px;
 }
-.con01 .main-txt p {
+.main-txt p {
   color: #222;
-  font-feature-settings: 'liga' off, 'clig' off;
   font-family: Pretendard;
   font-size: 24px;
-  font-style: normal;
   font-weight: 400;
   line-height: 33px;
 }
-.con01 .sub-txt {
+.sub-txt {
   margin-top: 24px;
   color: #666;
   text-align: center;
-  font-feature-settings: 'liga' off, 'clig' off;
   font-family: Pretendard;
   font-size: 14px;
-  font-style: normal;
   font-weight: 500;
-  line-height: 22px; /* 157.143% */
+  line-height: 22px;
 }
-.con01 .main-button {
+.main-button {
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 12px;
   margin-top: 20px;
 }
-.con01 .main-button button {
-  width: 100%;
+.main-button button {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -134,45 +160,36 @@
   border: 1px solid #dadada;
   background: #fff;
 }
-.con01 .main-button button:active {
-  color: #2866ec;
-  border: 2px solid #2866ec;
-}
-.con01 .main-button button p {
+.main-button button p {
   color: #222;
-  text-align: center;
-  font-feature-settings: 'liga' off, 'clig' off;
   font-family: Pretendard;
   font-size: 14px;
-  font-style: normal;
   font-weight: 700;
-  line-height: 22px; /* 157.143% */
+  line-height: 22px;
 }
-.con01 .main-button button span {
+.main-button button span {
   color: #666;
-  text-align: center;
-  font-feature-settings: 'liga' off, 'clig' off;
   font-family: Pretendard;
   font-size: 14px;
-  font-style: normal;
   font-weight: 400;
-  line-height: 20px; /* 142.857% */
+  line-height: 20px;
 }
-
+.main-button button.active {
+  border: 2px solid #2866ec;
+  background: #f3f7ff;
+  color: #2866ec;
+}
 .bottom button {
   width: 100%;
   height: 56px;
-  color: #fff;
-  text-align: center;
-  font-feature-settings: 'liga' off, 'clig' off;
-  font-family: Pretendard;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 22px; /* 137.5% */
   margin-top: 77px;
   border: none;
   border-radius: 8px;
   background: #2866ec;
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
 }
 </style>

@@ -8,6 +8,7 @@ import DashBoard from "@/pages/DashBoard/DashBoard.vue";
 
 // MyPage
 import MyPage from "@/pages/MyPage/MyPage.vue";
+import MyPageSub from "@/pages/MyPage/MyPageSub.vue";
 // import MyServePage from "@/pages/MyPage/MyServePage.vue";
 // HomePage
 import HomePage from "@/pages/HomePage/HomePage.vue";
@@ -67,9 +68,17 @@ import PaymentManagement03 from "@/pages/MyPage/MyMenuList/PaymentManagement/Pay
 import PaymentManagement04 from "@/pages/MyPage/MyMenuList/PaymentManagement/PaymentManagement04.vue"
 import PaymentManagement05 from "@/pages/MyPage/MyMenuList/PaymentManagement/PaymentManagement05.vue"
 import PaymentManagement06 from "@/pages/MyPage/MyMenuList/PaymentManagement/PaymentManagement06.vue"
+// import Announcement from "@/pages/MyPage/MyMenuList/Announcement/Announcement.vue"
+import MyRatingGuide from "@/pages/MyPage/MyRating.vue/Components/MyRatingGuide.vue"
+import SuperPayCharge01 from "@/pages/MyPage/SuperPayRecharge/PayCharge/SuperPayCharge01.vue"
+import PayHistory from "@/pages/MyPage/SuperPayRecharge/PayHistory/PayHistory.vue"
+// MyMenuLIst
+import Announcements from "@/pages/MyPage/MyMenuList/Announcement/Announcements.vue"
+import OrderDeliveryTracking01 from "@/pages/MyPage/MyMenuList/OrderDeliveryTracking/OrderDeliveryTracking01.vue"
+import TermsOfService from "@/pages/MyPage/MyMenuList/TermsOfService/TermsOfService.vue"
+
 
 import memo from "@/memo.vue"
-import Category01 from "@/pages/Category/Category01.vue"
 
 // ShoppingCart
 import ShoppingCart01 from "@/pages/ShoppingCart/ShoppingCart01.vue"
@@ -89,9 +98,35 @@ import Search02 from "@/pages/Search/Search02.vue"
 import Search03 from "@/pages/Search/Search03.vue"
 import Search04 from "@/pages/Search/Search04.vue"
 
+// SmartOrdering
+import SmartOrdering from "@/pages/SmartOrdering/SmartOrdering.vue"
+import SmartOrderingBeginner01 from "@/pages/SmartOrdering/SmartOrderingBeginner/SmartOrderingBeginner01.vue"
+import SmartOrderingBeginner02 from "@/pages/SmartOrdering/SmartOrderingBeginner/SmartOrderingBeginner02.vue"
+import SmartOrderingBeginner03 from "@/pages/SmartOrdering/SmartOrderingBeginner/SmartOrderingBeginner03.vue"
+import SmartOrderingBeginner04 from "@/pages/SmartOrdering/SmartOrderingBeginner/SmartOrderingBeginner04.vue"
+import SmartOrderingExpert01 from "@/pages/SmartOrdering/SmartOrderingExpert/SmartOrderingExpert01.vue"
+import SmartOrderingExpert02 from "@/pages/SmartOrdering/SmartOrderingExpert/SmartOrderingExpert02.vue"
+import SmartOrderingExpert03 from "@/pages/SmartOrdering/SmartOrderingExpert/SmartOrderingExpert03.vue"
+import SmartOrderingExpert04 from "@/pages/SmartOrdering/SmartOrderingExpert/SmartOrderingExpert04.vue"
+
+//Category
+import Category01 from "@/pages/Category/Category01.vue"
+import Category02 from "@/pages/Category/Category02.vue"
+import Category03 from "@/pages/Category/Category03.vue"
+import ProductList01 from "@/pages/Category/ProductList01.vue"
+import ProductList02 from "@/pages/Category/ProductList02.vue"
+import ProductDetaile01 from "@/pages/Category/ProductDetaile01.vue"
+import ProductDetaile02 from "@/pages/Category/ProductDetaile02.vue"
+import ProductListDetaile01 from "@/pages/Category/ProductListDetaile/ProductListDetaile01.vue"
+import ProductListDetaile02 from "@/pages/Category/ProductListDetaile/ProductListDetaile02.vue"
+import ProductListDetaile03 from "@/pages/Category/ProductListDetaile/ProductListDetaile03.vue"
+import ProductListDetaile04 from "@/pages/Category/ProductListDetaile/ProductListDetaile04.vue"
+import ProductListDetaile05 from "@/pages/Category/ProductListDetaile/ProductListDetaile05.vue"
+
 
 // Footer
 import ServiceIntroduction from "@/pages/Footer/ServiceIntroduction/ServiceIntroduction.vue"
+import SmartOrderingExpert05 from "@/pages/SmartOrdering/SmartOrderingExpert/SmartOrderingExpert05.vue";
 
 
 const routes = [
@@ -101,7 +136,7 @@ const routes = [
 
       // MyPage
       { path: 'my', name: 'MyPage', component: MyPage },
-      // { path: 'my/serve', name: 'MyServePage', component: MyServePage },
+      { path: 'mysub', name: 'MyPageSub', component: MyPageSub },
       // HomePage
       { path: 'homepage', name: 'HomePage', component: HomePage },
       {
@@ -163,12 +198,15 @@ const routes = [
   { path: '/my/paymentmanagement05', name: 'PaymentManagement05', component: PaymentManagement05 },
   { path: '/my/paymentmanagement06', name: 'PaymentManagement06', component: PaymentManagement06 },
 
-
-
+  // { path: '/my/announcement', name: 'Announcement', component: Announcement },
+  { path: '/my/myratingguide', name: 'MyRatingGuide', component: MyRatingGuide },
+  { path: '/my/termsOfservice', name: 'TermsOfService', component: TermsOfService },
+  { path: '/my/superpaycharge01', name: 'SuperPayCharge01', component: SuperPayCharge01 },
+  { path: '/my/payhistory', name: 'PayHistory', component: PayHistory },
 
 
   { path: '/memo', name: 'memo', component: memo },
-  { path: '/category01', name: 'Category01', component: Category01 },
+
   // ShoppingCart
   { path: '/shoppingcart01', name: 'ShoppingCart01', component: ShoppingCart01 },
   { path: '/shoppingcart02', name: 'ShoppingCart02', component: ShoppingCart02 },
@@ -188,14 +226,38 @@ const routes = [
   { path: '/search03', name: 'Search03', component: Search03 },
   { path: '/search04', name: 'Search04', component: Search04 },
 
+  // SmartOrdering
+  { path: '/smartordering', name: 'SmartOrdering', component: SmartOrdering },
+  { path: '/smartorderingbeginner01', name: 'SmartOrderingBeginner01', component: SmartOrderingBeginner01 },
+  { path: '/smartorderingbeginner02', name: 'SmartOrderingBeginner02', component: SmartOrderingBeginner02 },
+  { path: '/smartorderingbeginner03', name: 'SmartOrderingBeginner03', component: SmartOrderingBeginner03 },
+  { path: '/smartorderingbeginner04', name: 'SmartOrderingBeginner04', component: SmartOrderingBeginner04 },
+  { path: '/smartOrderingexpert01', name: 'SmartOrderingExpert01', component: SmartOrderingExpert01 },
+  { path: '/smartOrderingexpert02', name: 'SmartOrderingExpert02', component: SmartOrderingExpert02 },
+  { path: '/smartOrderingexpert03', name: 'SmartOrderingExpert03', component: SmartOrderingExpert03 },
+  { path: '/smartOrderingexpert04', name: 'SmartOrderingExpert04', component: SmartOrderingExpert04 },
+  { path: '/smartOrderingexpert05', name: 'SmartOrderingExpert05', component: SmartOrderingExpert05 },
+
+  //Category
+  { path: '/category01', name: 'Category01', component: Category01 },
+  { path: '/category02', name: 'Category02', component: Category02 },
+  { path: '/category03', name: 'Category03', component: Category03 },
+  { path: '/productlist01', name: 'ProductList01', component: ProductList01 },
+  { path: '/productlist02', name: 'ProductList02', component: ProductList02 },
+  { path: '/productdetaile01', name: 'ProductDetaile01', component: ProductDetaile01 },
+  { path: '/productdetaile02', name: 'ProductDetaile02', component: ProductDetaile02 },
+  { path: '/productlistdetaile01', name: 'ProductListDetaile01', component: ProductListDetaile01 },
+  { path: '/productlistdetaile02', name: 'ProductListDetaile02', component: ProductListDetaile02 },
+  { path: '/productlistdetaile03', name: 'ProductListDetaile03', component: ProductListDetaile03 },
+  { path: '/productlistdetaile04', name: 'ProductListDetaile04', component: ProductListDetaile04 },
+  { path: '/productlistdetaile05', name: 'ProductListDetaile05', component: ProductListDetaile05 },
+  { path: '/announcements', name: 'Announcements', component: Announcements },
+  { path: '/orderdeliverytracking01', name: 'OrderDeliveryTracking01', component: OrderDeliveryTracking01 },
+
 
 
   // footer
   { path: '/serviceintroduction', name: 'ServiceIntroduction', component: ServiceIntroduction },
-
-
-
-
 ];
 
 const router = createRouter({

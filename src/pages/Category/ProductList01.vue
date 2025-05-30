@@ -1,7 +1,11 @@
 <template>
   <div class="header">
-    <img src="/src/assets/img/Authentication/leftAllow.png" alt="뒤로가기" />
-    <span>카테고리</span>
+    <img
+      src="/src/assets/img/Authentication/leftAllow.png"
+      alt="뒤로가기"
+      @click="Category01"
+    />
+    <span>상품목록</span>
   </div>
   <div class="category-btn">
     <div class="btn-main">
@@ -23,7 +27,11 @@
         </li>
       </ul>
       <div class="btn-sub">
-        <img src="/src/assets/img/icon/arrowDown.svg" alt="" />
+        <img
+          src="/src/assets/img/icon/arrowDown.svg"
+          alt=""
+          @click="openAlert"
+        />
       </div>
     </div>
     <div class="type-btn">
@@ -39,7 +47,7 @@
             <div class="icon">
               <img src="/src/assets/img/category/categoryIcon02.svg" alt="" />
             </div>
-            <span class="active">구강</span>
+            <span class="active01">구강</span>
           </div>
           <div class="category-icon">
             <div class="icon">
@@ -99,7 +107,7 @@
         <p>상품</p>
         <span class="badge">200</span>
       </div>
-      <div class="title-right">
+      <div class="title-right" @click="openNotify">
         <p>인기 상품순</p>
         <img src="/src/assets/img/icon/arrowDown.svg" alt="" />
       </div>
@@ -107,7 +115,11 @@
     <div class="product-list">
       <div class="product-card" v-for="product in products" :key="product.id">
         <div class="card-image">
-          <img :src="product.img" alt="상품 이미지" />
+          <img
+            :src="product.img"
+            alt="상품 이미지"
+            @click="goProductDetaile01"
+          />
 
           <button class="icon-heart" @click="toggleLike(product.id)">
             <img
@@ -140,7 +152,7 @@
           </div>
         </div>
 
-        <div class="card-info">
+        <div class="card-info" @click="goProductDetaile01">
           <p class="category">{{ product.category }}</p>
           <p class="title">{{ product.title }}</p>
           <p class="subtitle">{{ product.subtitle }}</p>
@@ -182,10 +194,37 @@
   <div v-if="cartToastType === 'delete'" class="cart-delete modal">
     장바구니에서 상품을 삭제했습니다.
   </div>
+  <ProductListmodelAll v-if="isAlertOpen" @close="isAlertOpen = false">
+  </ProductListmodelAll>
+
+  <ProductListmodelAllay v-if="isNotifyOpen" @close="isNotifyOpen = false">
+  </ProductListmodelAllay>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import ProductListmodelAll from '@/pages/Category/ProductListAlert/ProductListmodelAll.vue';
+import ProductListmodelAllay from '@/pages/Category/ProductListAlert/ProductListmodelAllay.vue';
+
+const router = useRouter();
+const isAlertOpen = ref(false);
+const isNotifyOpen = ref(false);
+
+function openAlert() {
+  isAlertOpen.value = true;
+}
+function openNotify() {
+  isNotifyOpen.value = true;
+}
+
+function goProductDetaile01() {
+  router.push('/productdetaile01');
+}
+function Category01() {
+  router.push('/category01');
+}
+
 const products = ref([
   {
     id: 1,
@@ -298,15 +337,15 @@ function calculateFinalPrice(p, d) {
 .category-btn {
   display: flex;
   flex-direction: column;
-  padding: 24px;
 }
 .category-btn .btn-main ul {
   display: flex;
   gap: 4px;
+  padding: 16px;
 }
 .type-btn .content {
   overflow-x: hidden;
-  margin-top: 16px;
+  padding: 16px 0px;
 }
 .category-top {
   display: flex;
@@ -329,6 +368,9 @@ function calculateFinalPrice(p, d) {
   width: 100%;
   display: flex;
   gap: 4px;
+}
+.category-icon:nth-child(1) {
+  margin-left: 16px;
 }
 .category-icon {
   display: flex;
@@ -359,9 +401,14 @@ function calculateFinalPrice(p, d) {
   background: #2866ec;
   color: #fff;
 }
-.category-icon.active span {
-  color: #1e90ff;
-  font-weight: bold;
+.category-icon span.active01 {
+  color: #1281e1;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%; /* 19.6px */
 }
 /* product */
 .product {
@@ -664,6 +711,9 @@ function calculateFinalPrice(p, d) {
   margin: 0;
   list-style: none;
 }
+.croll li:last-child {
+  margin-right: 40px;
+}
 .croll li {
   flex: 0 0 auto;
 }
@@ -701,18 +751,19 @@ function calculateFinalPrice(p, d) {
 
 .btn-main::before {
   content: '';
-  width: 40px;
-  height: 40px;
-  position: absolute;
+  top: 10px;
   right: 40px;
+  width: 40px;
+  height: 50px;
+  position: absolute;
   background: linear-gradient(270deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
 }
 .btn-sub {
   position: absolute;
-  top: 0px;
+  top: 10px;
   right: 0px;
   width: 40px;
-  height: 40px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;

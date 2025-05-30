@@ -6,7 +6,7 @@
         alt=""
         class="item-icon"
       />
-      <span class="item-label">
+      <span class="item-label" @click="OrderDeliveryTracking01">
         주문/배송 조회
         <img
           class="alarm-point"
@@ -44,7 +44,7 @@
         alt=""
         class="item-icon"
       />
-      <span class="item-label">
+      <span class="item-label" @click="Announcements">
         공지사항
         <!-- <img
           class="alarm-point"
@@ -53,7 +53,7 @@
           /> -->
       </span>
     </li>
-    <li class="list-item">
+    <li class="list-item" @click="TeamsOfService">
       <img src="/src/assets/img/myPage/termsBtn.png" alt="" class="item-icon" />
       <span class="item-label"
         >약관정보
@@ -102,6 +102,15 @@ function PaymentManagement05() {
 }
 function PaymentManagement06() {
   router.push('/my/paymentmanagement06');
+}
+function TeamsOfService() {
+  router.push('/my/termsOfservice');
+}
+function OrderDeliveryTracking01() {
+  router.push('/orderdeliverytracking01');
+}
+function Announcements() {
+  router.push('/announcements');
 }
 </script>
 

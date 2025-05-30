@@ -3,7 +3,11 @@
     <div class="model">
       <div class="header">
         <span>정렬</span>
-        <img src="/src/assets/img/icon/cross.svg" alt="뒤로가기" />
+        <img
+          src="/src/assets/img/icon/cross.svg"
+          alt="뒤로가기"
+          @click.self="$emit('close')"
+        />
       </div>
       <div class="item">
         <ul>
@@ -41,7 +45,7 @@
       </div>
     </div>
     <div class="bottom">
-      <button>확인</button>
+      <button @click.self="$emit('close')">확인</button>
     </div>
   </div>
 </template>
@@ -58,6 +62,9 @@ function goBack() {
 
 <style scoped>
 .wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.6);

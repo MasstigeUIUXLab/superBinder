@@ -8,16 +8,21 @@
         <img class="badge-dot" src="/src/assets/img/icon/badgeDot.svg" alt="" />
         <span class="layout-header-sr-only">알람버튼</span>
       </button>
-      <!-- 마이페이지 외에 홈버튼 로고 일 때 로고 -->
-      <router-link v-if="!isMyPage" to="/" title="maingo">
+
+      <router-link
+        v-if="!isMyPage"
+        to="/"
+        title="maingo"
+        @click.prevent="goMainAndReload"
+      >
         <img
           src="/src/assets/img/icon/titlelogo.png"
           alt="titlelogo"
           class="layout-header-logo"
         />
       </router-link>
-      <!-- 마이페이지 홈버튼 로고 일 때 로고 -->
-      <router-link v-else to="/my" title="mypage">
+
+      <router-link v-else to="/my" title="mypage" @click="goMyPageRe">
         <img
           class="myPageLogo"
           src="/src/assets/img/myPage/myPageLogo.png"
@@ -55,7 +60,7 @@
       <div
         class="layout-footer-nav-item"
         :class="{ active: activeNav === 'hamburger' }"
-        @click="router.push('/category01')"
+        @click="goCategory01"
       >
         <img src="/src/assets/img/icon/hambugerBtn.png" alt="hamburgerBtn" />
         <img
@@ -64,9 +69,15 @@
           alt="hamburgerBtnHover"
         />
       </div>
-      <div class="layout-footer-nav-item" @click="goHomePage">
+      <div
+        class="layout-footer-nav-item"
+        :class="{ active: isHome }"
+        @click="goHomePageAndReload"
+      >
+        <!-- active 시에는 hover-img 클래스로 표시하도록 수정 -->
         <img
           v-if="isHome"
+          class="hover-img"
           src="/src/assets/img/icon/homeClickBtn.png"
           alt="homeBtn"
         />
@@ -75,7 +86,7 @@
       <div
         class="layout-footer-nav-item"
         :class="{ active: activeNav === 'search' }"
-        @click="router.push('/search01')"
+        @click="goSearch"
       >
         <img src="/src/assets/img/icon/searchBtn.png" alt="searchBtn" />
         <img
@@ -87,7 +98,7 @@
       <div
         class="layout-footer-nav-item"
         :class="{ active: activeNav === 'chart' }"
-        @click="router.push('/shoppingcart01')"
+        @click="goShoppingCart01"
       >
         <img src="/src/assets/img/icon/layoutCart.svg" alt="chartBtn" />
         <img
@@ -107,8 +118,22 @@ import { computed } from 'vue';
 const router = useRouter();
 const route = useRoute();
 
-function goHomePage() {
-  router.push('/homepage');
+function goMainAndReload() {
+  router.push('/').then(() => {
+    window.location.reload();
+  });
+}
+
+function goHomePageAndReload() {
+  router.push('/homepage').then(() => {
+    window.location.reload();
+  });
+}
+
+function goMyPageRe() {
+  router.push('/my').then(() => {
+    window.location.reload();
+  });
 }
 
 function goMyPage() {
@@ -126,12 +151,13 @@ function goAlarm() {
 function goSetting() {
   router.push('/setting');
 }
+
 function goCategory01() {
   router.push('/category01');
 }
 
 function goShoppingCart01() {
-  router.push('shoppingcart01');
+  router.push('/shoppingcart01');
 }
 
 function goSearch() {
@@ -139,13 +165,15 @@ function goSearch() {
 }
 
 const isHome = computed(() => route.path === '/homepage');
-const isMyPage = computed(() => route.path === '/my');
+const isMyPage = computed(
+  () => route.path === '/my' || route.path === '/mysub'
+);
 
 const activeNav = computed(() => {
   if (route.path === '/') return 'dashboard';
-  if (route.path === '/hamburger') return 'hamburger';
-  if (route.path === '/search') return 'search';
-  if (route.path === '/chart') return 'chart';
+  if (route.path === '/category01') return 'hamburger';
+  if (route.path === '/search01') return 'search';
+  if (route.path === '/shoppingcart01') return 'chart';
   return null;
 });
 </script>
@@ -157,7 +185,7 @@ const activeNav = computed(() => {
   padding-bottom: 70px;
 }
 
-.layout .layout-header {
+.layout-header {
   position: fixed;
   top: 0;
   left: 0;
@@ -167,25 +195,25 @@ const activeNav = computed(() => {
   padding: 13px 15px;
   justify-content: space-between;
   align-items: center;
-  background: #ffffff;
+  background: #fff;
   z-index: 2;
 }
 
-.layout .layout-header button {
+.layout-header button {
   position: relative;
   cursor: pointer;
   border: none;
   background: none;
 }
 
-.layout .layout-header-logo {
+.layout-header-logo {
   width: 61px;
   height: 32px;
   flex-shrink: 0;
 }
 
-.layout .layout-header-icon-alarm,
-.layout .layout-header-icon-mybtn {
+.layout-header-icon-alarm,
+.layout-header-icon-mybtn {
   display: inline-block;
   width: 24px;
   height: 24px;
@@ -193,15 +221,15 @@ const activeNav = computed(() => {
   background-position: center;
 }
 
-.layout .layout-header-icon-alarm {
+.layout-header-icon-alarm {
   background-image: url(/src/assets/img/icon/alarmbtn.png);
 }
 
-.layout .layout-header-icon-mybtn {
+.layout-header-icon-mybtn {
   background-image: url(/src/assets/img/icon/mybtn.png);
 }
 
-.layout .layout-header-sr-only {
+.layout-header-sr-only {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -213,7 +241,7 @@ const activeNav = computed(() => {
   border: 0;
 }
 
-.layout .layout-footer-nav {
+.layout-footer-nav {
   background-image: url(/src/assets/img/icon/bottomBar.png);
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -229,7 +257,7 @@ const activeNav = computed(() => {
   z-index: 2;
 }
 
-.layout .layout-footer-nav .layout-footer-nav-item {
+.layout-footer-nav-item {
   position: relative;
   background: none;
   border: none;
@@ -241,24 +269,24 @@ const activeNav = computed(() => {
   justify-content: center;
 }
 
-.layout .layout-footer-nav .layout-footer-nav-item img {
+.layout-footer-nav-item img {
   width: 40px;
   height: 40px;
   object-fit: contain;
 }
 
-.layout .layout-footer-nav .layout-footer-nav-item .hover-img {
+.hover-img {
   position: absolute;
   top: 0;
   left: 0;
   display: none;
 }
 
-.layout .layout-footer-nav .layout-footer-nav-item.active .hover-img {
+.layout-footer-nav-item.active .hover-img {
   display: block;
 }
 
-.layout .layout-footer-nav .layout-footer-nav-item.active img:not(.hover-img) {
+.layout-footer-nav-item.active img:not(.hover-img) {
   display: none;
 }
 
@@ -271,9 +299,10 @@ const activeNav = computed(() => {
   width: 24px;
   height: 24px;
 }
+
 .badge-dot {
   position: absolute;
-  top: 0px;
+  top: 0;
   left: 14px;
   width: 7px;
   height: 7px;

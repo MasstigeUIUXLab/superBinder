@@ -1,11 +1,19 @@
 <template>
   <div class="header">
     <div class="header-left">
-      <img src="/src/assets/img/icon/leftAllow.svg" alt="뒤로가기" />
+      <img
+        src="/src/assets/img/icon/leftAllow.svg"
+        alt="뒤로가기"
+        @click="goBackPage"
+      />
       <p>스마트 발주</p>
     </div>
     <div class="header-right">
-      <img src="/src/assets/img/smartOrdering/homeBtn.svg" alt="홈" />
+      <img
+        src="/src/assets/img/smartOrdering/homeBtn.svg"
+        alt="홈"
+        @click="goHome"
+      />
     </div>
   </div>
   <div class="wrap">
@@ -269,11 +277,30 @@
         <img src="/src/assets/img/icon/arrowUp.svg" alt="" />
       </div>
     </div>
-    <button>3건 주문하기</button>
+    <button @click="goNextPage">3건 주문하기</button>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useRouter } from 'vue-router';
+const router = useRouter();
+
+function goSmartOrdering() {
+  router.push('/smartordering');
+}
+
+function goBackPage() {
+  router.push('/smartOrderingexpert04');
+}
+
+function goNextPage() {
+  router.push('/shoppingcart11');
+}
+
+function goHome() {
+  router.push('/homepage');
+}
+</script>
 
 <style scoped>
 .header {

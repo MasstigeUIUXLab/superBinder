@@ -11,12 +11,20 @@
       </div>
     </div>
     <div class="con02">
-      <button class="recharge-btn">충전하기</button>
+      <button class="recharge-btn" @click="superpaycharge01">충전하기</button>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+function superpaycharge01() {
+  router.push('/my/superpaycharge01');
+}
+</script>
 
 <style scoped>
 .pay-recharge {

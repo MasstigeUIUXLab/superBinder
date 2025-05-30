@@ -6,7 +6,7 @@
     </div>
     <div class="item-img">
       <img src="/src/assets/img/homeImg/NewBrand.png" alt="" />
-      <button class="buy-now">바로구매</button>
+      <button class="buy-now" @click="goProductDetaile01">바로구매</button>
     </div>
     <div class="brand-list">
       <div v-for="brand in items1" :key="brand.name" class="brand-item">
@@ -19,6 +19,9 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const items1 = [
   { name: '클린로직', img: '/src/assets/img/homeImg/newBrandLogo1.png' },
@@ -27,6 +30,10 @@ const items1 = [
   { name: '톤키타', img: '/src/assets/img/homeImg/newBrandLogo4.png' },
   { name: '드라이팍', img: '/src/assets/img/homeImg/newBrandLogo5.png' },
 ];
+
+function goProductDetaile01() {
+  router.push('/productdetaile01');
+}
 </script>
 
 <style scoped>

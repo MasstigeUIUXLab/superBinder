@@ -1,12 +1,20 @@
 <template>
   <div class="header">
     <div class="header-left">
-      <img src="/src/assets/img/icon/leftAllow.svg" alt="뒤로가기" />
+      <img
+        src="/src/assets/img/icon/leftAllow.svg"
+        alt="뒤로가기"
+        @click="goBackPage"
+      />
 
       <p>스마트 발주</p>
     </div>
     <div class="header-right">
-      <img src="/src/assets/img/smartOrdering/homeBtn.svg" alt="홈" />
+      <img
+        src="/src/assets/img/smartOrdering/homeBtn.svg"
+        alt="홈"
+        @click="goHome"
+      />
     </div>
   </div>
   <div class="wrap">
@@ -20,21 +28,76 @@
       <ul>
         <li>
           <img
+            src="/src/assets/img/smartOrdering/smartOrdering02-01.png"
+            alt=""
+          />
+          <p>의류</p>
+        </li>
+        <li>
+          <img
+            src="/src/assets/img/smartOrdering/smartOrdering02-02.png"
+            alt=""
+          />
+          <p>뷰티</p>
+        </li>
+        <li>
+          <img
             src="/src/assets/img/smartOrdering/smartOrdering02-03.png"
             alt=""
           />
           <p>식품</p>
         </li>
+        <li>
+          <img
+            src="/src/assets/img/smartOrdering/smartOrdering02-04.png"
+            alt=""
+          />
+          <p>홈인테리어</p>
+        </li>
+        <li>
+          <img
+            src="/src/assets/img/smartOrdering/smartOrdering02-05.png"
+            alt=""
+          />
+          <p>자동차 용품</p>
+        </li>
+        <li>
+          <img
+            src="/src/assets/img/smartOrdering/smartOrdering02-06.png"
+            alt=""
+          />
+          <p>문구</p>
+        </li>
       </ul>
     </div>
   </div>
   <div class="bottom">
-    <button class="cancel">취소</button>
-    <button class="next">다음으로</button>
+    <button class="cancel" @click="goSmartOrdering">취소</button>
+    <button class="next" @click="goNextPage">다음으로</button>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+function goSmartOrdering() {
+  router.push('/smartordering');
+}
+
+function goBackPage() {
+  router.push('/smartorderingbeginner01');
+}
+
+function goNextPage() {
+  router.push('/smartorderingbeginner03');
+}
+
+function goHome() {
+  router.push('/homepage');
+}
+</script>
 
 <style scoped>
 .header {

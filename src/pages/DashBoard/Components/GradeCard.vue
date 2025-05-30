@@ -1,5 +1,5 @@
 <template>
-  <div class="grade-card">
+  <div class="grade-card" @click="goMyRatingGuide">
     <!-- 아이콘 등급이미지 클래스로 변경 가능 bronze, seliver, gold, platinum -->
     <i class="grade-icon bronze"></i>
     <div class="grade-title">실버 등급까지 <span>120만원</span> 남았어요</div>
@@ -11,7 +11,15 @@
     </div>
   </div>
 </template>
-<script setup></script>
+<script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+function goMyRatingGuide() {
+  router.push('my/myratingguide');
+}
+</script>
 <style>
 .grade-card {
   margin-top: 30px;

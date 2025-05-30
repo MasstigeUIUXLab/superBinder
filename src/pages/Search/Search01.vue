@@ -97,7 +97,7 @@
       </ul>
     </div>
     <BannerCard
-      :marginTop="0"
+      :marginTop="30"
       @click="isModalOpen = true"
       title="스마트 발주"
       subtitle="발주 주문을 쉽고 빠르게&#10;진행하실 수 있어요."
@@ -107,12 +107,17 @@
       titleColor="#000"
       subtitleColor="#000"
     />
+    <SmartAlert v-if="isModalOpen" @close="isModalOpen = false" />
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import BannerCard from '@/common/BannerCard.vue';
+import SmartAlert from '@/common/Alert/SmartAlert.vue';
 import { useRouter } from 'vue-router';
+
+const isModalOpen = ref(false);
 
 const router = useRouter();
 

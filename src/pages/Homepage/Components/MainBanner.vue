@@ -18,6 +18,7 @@
       :centeredSlides="true"
       :onSlideChange="onSlideChange"
       class="my-swiper"
+      @click="goProductDetaile01"
     >
       <swiper-slide v-for="(item, index) in filteredBannerItems" :key="index">
         <div class="slide-box">
@@ -45,6 +46,13 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+function goProductDetaile01() {
+  router.push('/productdetaile01');
+}
 
 const filters = [
   { label: '🛍️ 자주구매', value: 'items1' },

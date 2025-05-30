@@ -62,7 +62,7 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 function goBack() {
-  router.go('-1');
+  router.push('/');
 }
 
 function goAccountManagement() {

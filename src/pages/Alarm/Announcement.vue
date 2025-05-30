@@ -37,7 +37,7 @@
       </div>
       <div class="inventory-btn btn">
         <button>
-          <p>목록</p>
+          <p @click="goAnnouncement">목록</p>
         </button>
       </div>
       <div class="next-btn btn">
@@ -57,6 +57,10 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 function goBack() {
   router.back('/alarm');
+}
+
+function goAnnouncement() {
+  router.push('/announcement');
 }
 
 const notifications = ref([

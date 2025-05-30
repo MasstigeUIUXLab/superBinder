@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <img src="/src/assets/img/Authentication/leftAllow.png" alt="뒤로가기" />
-    <span>카테고리</span>
+    <span>상품목록</span>
   </div>
   <div class="category-btn">
     <div class="btn-main">
@@ -112,9 +112,6 @@
           <button>청소물품</button>
         </li>
       </ul>
-      <div class="btn-sub">
-        <img src="/src/assets/img/icon/arrowDown.svg" alt="" />
-      </div>
     </div>
     <div class="prduct-title">
       <div class="title-left">
@@ -320,15 +317,15 @@ function calculateFinalPrice(p, d) {
 .category-btn {
   display: flex;
   flex-direction: column;
-  padding: 24px;
 }
 .category-btn .btn-main ul {
   display: flex;
   gap: 4px;
+  padding: 16px;
 }
 .type-btn .content {
   overflow-x: hidden;
-  margin-top: 16px;
+  padding: 16px 0px;
 }
 .category-top {
   display: flex;
@@ -351,6 +348,9 @@ function calculateFinalPrice(p, d) {
   width: 100%;
   display: flex;
   gap: 4px;
+}
+.category-icon:nth-child(1) {
+  margin-left: 16px;
 }
 .category-icon {
   display: flex;
@@ -695,6 +695,9 @@ function calculateFinalPrice(p, d) {
   margin: 0;
   list-style: none;
 }
+.croll li:last-child {
+  margin-right: 40px;
+}
 .croll li {
   flex: 0 0 auto;
 }
@@ -732,18 +735,19 @@ function calculateFinalPrice(p, d) {
 
 .btn-main::before {
   content: '';
-  width: 40px;
-  height: 40px;
-  position: absolute;
+  top: 10px;
   right: 40px;
+  width: 40px;
+  height: 50px;
+  position: absolute;
   background: linear-gradient(270deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
 }
 .btn-sub {
   position: absolute;
-  top: 0px;
+  top: 10px;
   right: 0px;
   width: 40px;
-  height: 40px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;

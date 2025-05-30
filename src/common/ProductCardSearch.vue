@@ -19,7 +19,11 @@
       <div class="product-card">
         <div class="card-image">
           <!-- 라우터 -->
-          <img :src="product.img" alt="상품 이미지" />
+          <img
+            :src="product.img"
+            alt="상품 이미지"
+            @click="goProductDetaile01"
+          />
           <button class="icon-heart" @click="toggleLike(product.id)">
             <img
               v-if="!likedMap[product.id]"
@@ -50,7 +54,7 @@
             일시품절
           </div>
         </div>
-        <div class="card-info">
+        <div class="card-info" @click="goProductDetaile01">
           <p class="category">{{ product.category }}</p>
           <p class="title">{{ product.title }}</p>
           <p class="subtitle">{{ product.subtitle }}</p>
@@ -99,6 +103,10 @@ import 'swiper/css/pagination';
 import { ref } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { FreeMode, Pagination } from 'swiper/modules';
+
+function goProductDetaile01() {
+  router.push('/productdetaile01');
+}
 
 const { products } = defineProps({
   products: { type: Array, required: true },

@@ -6,7 +6,7 @@
   <div class="wrap">
     <ul class="category">
       <li>카테고리</li>
-      <li>브랜드</li>
+      <li class="active">브랜드</li>
       <li>카테고리</li>
     </ul>
     <!-- a태그 -->
@@ -103,6 +103,12 @@
 }
 .category {
   display: flex;
+}
+.category li.active {
+  background: #fff;
+  color: #1e90ff;
+  font-weight: bold;
+  border-bottom: 2px solid #2866ec;
 }
 .category li {
   width: 100%;
